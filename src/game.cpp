@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <SDL.h>
 #include <SDL_events.h>
 #include <stdexcept>
 
@@ -7,7 +8,11 @@
 #include <SDL_video.h>
 
 Game::Game(): running(false) {
-    if (SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        throw std::runtime_error("could not initialize sdl2");
+    }
+
+    if (SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer) != 0) {
         throw std::runtime_error("could not initialize sdl2 window and renderer");
     };
 }
@@ -15,6 +20,8 @@ Game::Game(): running(false) {
 Game::~Game() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+
+    SDL_Quit();
 }
 
 void Game::mainloop() {
