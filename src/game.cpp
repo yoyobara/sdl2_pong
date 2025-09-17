@@ -1,11 +1,16 @@
-#include "game.h"
+#include <stdexcept>
 
 #include <SDL.h>
 #include <SDL_events.h>
-#include <stdexcept>
-
+#include <SDL_stdinc.h>
+#include <SDL_timer.h>
 #include <SDL_render.h>
 #include <SDL_video.h>
+
+#include "game.h"
+#include "utils/fps_clock.h"
+#include "constants.h"
+
 
 Game::Game(): running(false) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -27,6 +32,7 @@ Game::~Game() {
 void Game::mainloop() {
     SDL_Event e;
 
+    FPSClock clock(FPS);
     running = true;
 
     while (running) {
@@ -40,5 +46,7 @@ void Game::mainloop() {
         SDL_SetRenderDrawColor(renderer, 0, 128, 255, 255);
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
+
+        clock.tick();
     }
 }
