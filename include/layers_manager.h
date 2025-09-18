@@ -1,13 +1,12 @@
 #pragma once
 
-#include <stack>
 #include <memory>
+#include <stack>
 #include <variant>
 
 #include "layer.h"
 
-class LayerManager
-{
+class LayerManager {
 public:
   void handle_event(SDL_Event *e);
   void update(double dt);

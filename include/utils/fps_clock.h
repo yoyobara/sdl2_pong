@@ -2,16 +2,15 @@
 
 #include <SDL2/SDL.h>
 
-class FPSClock
-{
+class FPSClock {
 public:
-    explicit FPSClock(float targetFps);
+  explicit FPSClock(float targetFps);
 
-    void tick();
-    float get_delta_time() const;
+  void tick();
+  float get_delta_time() const;
 
 private:
-    float targetFps;
-    Uint32 frameDelay;
-    Uint32 lastTick;
+  float targetFps;
+  Uint32 frameDelay;
+  Uint32 lastTick;
 };

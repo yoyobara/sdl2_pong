@@ -1,13 +1,12 @@
-#include <cstdlib>
 #include <SDL.h>
+#include <cstdlib>
 
 #include "game.h"
 
-int main(int argc, char *argv[])
-{
-    Game g;
+int main(int argc, char *argv[]) {
+  Game g;
 
-    g.mainloop();
+  g.mainloop();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
