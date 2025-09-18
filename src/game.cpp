@@ -8,6 +8,7 @@
 #include <SDL_video.h>
 
 #include "game.h"
+#include "main_state.h"
 #include "utils/fps_clock.h"
 #include "constants.h"
 
@@ -35,18 +36,22 @@ void Game::mainloop() {
     FPSClock clock(FPS);
     running = true;
 
+    MainState mainstate;
+
     while (running) {
 
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_QUIT) {
                 running = false;
             }
+
+            mainstate.handle_event(&e);
         }
 
-        SDL_SetRenderDrawColor(renderer, 0, 128, 255, 255);
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
+        mainstate.update(clock.get_delta_time());
+        mainstate.draw(renderer);
 
+        SDL_RenderPresent(renderer);
         clock.tick();
     }
 }
