@@ -35,15 +35,17 @@ void Game::mainloop() {
   FPSClock clock(FPS);
   running = true;
 
-  LayerManager mng;
-
   while (running) {
 
     while (SDL_PollEvent(&e)) {
       if (e.type == SDL_QUIT) {
         running = false;
       }
+      mgr.handle_event(&e);
     }
+
+    mgr.update(clock.get_delta_time());
+    mgr.draw(renderer);
 
     SDL_RenderPresent(renderer);
     clock.tick();

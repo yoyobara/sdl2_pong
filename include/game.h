@@ -13,6 +13,7 @@ private:
   SDL_Window *window;
   SDL_Renderer *renderer;
 
+  LayerManager mgr;
   bool running;
 
 public:

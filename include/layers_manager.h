@@ -12,6 +12,8 @@ public:
   void update(double dt);
   void draw(SDL_Renderer *renderer);
 
+  void push(std::unique_ptr<Layer> l);
+
 private:
   std::stack<std::unique_ptr<Layer>> layers_stack;
 };

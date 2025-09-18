@@ -21,3 +21,7 @@ void LayerManager::update(double dt) {
 void LayerManager::draw(SDL_Renderer *renderer) {
   layers_stack.top()->draw(renderer);
 }
+
+void LayerManager::push(std::unique_ptr<Layer> l) {
+  layers_stack.push(std::move(l));
+}
