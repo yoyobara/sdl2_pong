@@ -12,25 +12,29 @@
 #include "utils/fps_clock.h"
 #include "constants.h"
 
-
-Game::Game(): running(false) {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+Game::Game() : running(false)
+{
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    {
         throw std::runtime_error("could not initialize sdl2");
     }
 
-    if (SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer) != 0) {
+    if (SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window, &renderer) != 0)
+    {
         throw std::runtime_error("could not initialize sdl2 window and renderer");
     };
 }
 
-Game::~Game() {
+Game::~Game()
+{
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
     SDL_Quit();
 }
 
-void Game::mainloop() {
+void Game::mainloop()
+{
     SDL_Event e;
 
     FPSClock clock(FPS);
@@ -38,10 +42,13 @@ void Game::mainloop() {
 
     MainState mainstate;
 
-    while (running) {
+    while (running)
+    {
 
-        while (SDL_PollEvent(&e)) {
-            if (e.type == SDL_QUIT) {
+        while (SDL_PollEvent(&e))
+        {
+            if (e.type == SDL_QUIT)
+            {
                 running = false;
             }
 

@@ -2,7 +2,8 @@
 
 #include <SDL2/SDL.h>
 
-class FPSClock {
+class FPSClock
+{
 public:
     explicit FPSClock(float targetFps);
 
@@ -14,4 +15,3 @@ private:
     Uint32 frameDelay;
     Uint32 lastTick;
 };
-

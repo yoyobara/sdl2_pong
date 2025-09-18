@@ -6,16 +6,17 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 800;
 
-class Game {
-    private:
-        SDL_Window* window;
-        SDL_Renderer* renderer;
+class Game
+{
+private:
+    SDL_Window *window;
+    SDL_Renderer *renderer;
 
-        bool running;
+    bool running;
 
-    public:
-        Game();
-        ~Game();
+public:
+    Game();
+    ~Game();
 
-        void mainloop();
+    void mainloop();
 };
