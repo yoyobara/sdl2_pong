@@ -9,6 +9,7 @@
 
 #include "constants.h"
 #include "game.h"
+#include "layers/main_layer.h"
 #include "utils/fps_clock.h"
 
 Game::Game() : running(false) {
@@ -34,6 +35,8 @@ void Game::mainloop() {
 
   FPSClock clock(FPS);
   running = true;
+
+  mgr.push(std::make_unique<MainLayer>());
 
   while (running) {
 
