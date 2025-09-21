@@ -9,8 +9,10 @@
 
 #include "constants.h"
 #include "game.h"
-#include "layers/main_layer.h"
 #include "utils/fps_clock.h"
+
+#include "layers/main_layer.h"
+#include "layers/sub_layer.h"
 
 Game::Game() : running(false) {
   if (SDL_Init(SDL_INIT_VIDEO) != 0) {

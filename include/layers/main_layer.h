@@ -1,3 +1,5 @@
+#pragma once
+
 #include "layer.h"
 
 struct Color {
@@ -9,6 +11,7 @@ struct Color {
 class MainLayer : public Layer {
 private:
   Color c;
+  bool show_modal;
 
 public:
   MainLayer();
