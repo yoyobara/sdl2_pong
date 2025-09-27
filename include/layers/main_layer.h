@@ -2,13 +2,15 @@
 
 #include "layer.h"
 
-struct Color {
+struct Color
+{
   Uint8 r;
   Uint8 g;
   Uint8 b;
 };
 
-class MainLayer : public Layer {
+class MainLayer : public Layer
+{
 private:
   Color c;
   bool show_modal;

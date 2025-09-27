@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <iostream>
 
 #include <SDL.h>
 #include <SDL_events.h>
@@ -14,36 +15,46 @@
 #include "layers/main_layer.h"
 #include "layers/sub_layer.h"
 
-Game::Game() : running(false) {
-  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+Game::Game() : running(false)
+{
+  if (SDL_Init(SDL_INIT_VIDEO) != 0)
+  {
     throw std::runtime_error("could not initialize sdl2");
   }
 
   if (SDL_CreateWindowAndRenderer(SCREEN_WIDTH, SCREEN_HEIGHT, 0, &window,
-                                  &renderer) != 0) {
+                                  &renderer) != 0)
+  {
     throw std::runtime_error("could not initialize sdl2 window and renderer");
   };
 }
 
-Game::~Game() {
+Game::~Game()
+{
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
 
   SDL_Quit();
 }
 
-void Game::mainloop() {
+void Game::mainloop()
+{
   SDL_Event e;
-
   FPSClock clock(FPS);
-  running = true;
+  ResourceManager resource_manager(renderer, "assets/", false);
 
+  resource_manager.load_texture("stone.png");
+
+  running = true;
   mgr.push(std::make_unique<MainLayer>());
 
-  while (running) {
+  while (running && !mgr.is_empty())
+  {
 
-    while (SDL_PollEvent(&e)) {
-      if (e.type == SDL_QUIT) {
+    while (SDL_PollEvent(&e))
+    {
+      if (e.type == SDL_QUIT)
+      {
         running = false;
       }
       mgr.handle_event(&e);

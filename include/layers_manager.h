@@ -6,13 +6,15 @@
 
 #include "layer.h"
 
-class LayerManager {
+class LayerManager
+{
 public:
   void handle_event(SDL_Event *e);
   void update(double dt);
   void draw(SDL_Renderer *renderer);
 
   void push(std::unique_ptr<Layer> l);
+  bool is_empty();
 
 private:
   std::stack<std::unique_ptr<Layer>> layers_stack;

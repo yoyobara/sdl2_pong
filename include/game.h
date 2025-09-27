@@ -4,11 +4,13 @@
 #include <SDL_video.h>
 
 #include "layers_manager.h"
+#include "resource_manager.h"
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 800;
 
-class Game {
+class Game
+{
 private:
   SDL_Window *window;
   SDL_Renderer *renderer;
